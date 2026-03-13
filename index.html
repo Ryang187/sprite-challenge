@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9块9挑战100杯雪碧茶 - 谁是全球牛碧之王</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00A651', // 雪碧绿
+                        secondary: '#FFCC00', // 雪碧黄
+                        accent: '#E3000F', // 红色强调
+                        dark: '#1A1A1A',
+                    },
+                    fontFamily: {
+                        sans: ['PingFang SC', 'Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .card-shadow {
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+            .btn-glow {
+                box-shadow: 0 0 20px rgba(255, 204, 0, 0.6);
+            }
+            .bg-gradient-sprite {
+                background: linear-gradient(135deg, #00A651 0%, #00C85E 100%);
+            }
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+            }
+            .animate-pulse-slow {
+                animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- 顶部导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gradient-sprite text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-trophy text-secondary text-2xl"></i>
+                <h1 class="text-xl font-bold">牛碧挑战</h1>
+            </div>
+            <div class="flex space-x-4">
+                <button onclick="showPage('home')" class="px-3 py-1 rounded-full text-sm hover:bg-white/20 transition">首页</button>
+                <button onclick="showPage('rules')" class="px-3 py-1 rounded-full text-sm hover:bg-white/20 transition">规则</button>
+                <button onclick="showPage('rewards')" class="px-3 py-1 rounded-full text-sm hover:bg-white/20 transition">奖励</button>
+                <button onclick="showPage('profile')" class="px-3 py-1 rounded-full text-sm hover:bg-white/20 transition">我的</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区域 -->
+    <div class="pt-16 pb-20">
+        <!-- 首页 -->
+        <div id="home-page" class="page">
+            <!-- 头部Banner -->
+            <div class="relative bg-gradient-to-b from-primary to-primary/80 text-white overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                    <div class="absolute w-40 h-40 rounded-full bg-white/30 -top-10 -left-10 animate-float"></div>
+                    <div class="absolute w-60 h-60 rounded-full bg-white/20 top-20 -right-20 animate-float" style="animation-delay: 1s"></div>
+                    <div class="absolute w-32 h-32 rounded-full bg-white/20 bottom-10 left-20 animate-float" style="animation-delay: 2s"></div>
+                </div>
+                
+                <div class="container mx-auto px-4 py-10 relative z-10">
+                    <div class="text-center">
+                        <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-2 text-shadow">
+                            <span class="text-secondary">9块9</span> 挑战100杯
+                        </h2>
+                        <h3 class="text-[clamp(1.5rem,4vw,2.5rem)] font-bold mb-4 text-shadow">
+                            谁是全球<span class="text-secondary">牛碧之王</span>？
+                        </h3>
+                        <p class="text-lg mb-6 opacity-90">4月1日 - 6月1日 · 全国门店开启</p>
+                        <button onclick="buyCard()" class="bg-secondary text-dark font-bold text-xl px-8 py-4 rounded-full btn-glow hover:scale-105 transition transform animate-pulse-slow">
+                            立即开通 ¥9.9
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 活动赛道 -->
+            <div class="container mx-auto px-4 py-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-dark">🔥 两大赛道 等你来战</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 牛碧之王赛道 -->
+                    <div class="bg-white rounded-2xl p-6 card-shadow hover:scale-[1.02] transition transform">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                                <i class="fa fa-trophy"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark">牛碧之王赛道</h3>
+                                <p class="text-gray-500 text-sm">百杯挑战 · 比速度</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <p class="text-gray-700">最快完成100杯雪碧茶核销</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <p class="text-gray-700">前3名获得「全球牛碧之王」称号</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <p class="text-gray-700">按第100杯核销时间排名，先到先得</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/10 rounded-xl p-4">
+                            <p class="text-sm text-primary font-medium">
+                                <i class="fa fa-lightbulb-o mr-1"></i>
+                                每日可领4杯，最快25天就能完成挑战！
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 牛碧财神赛道 -->
+                    <div class="bg-white rounded-2xl p-6 card-shadow hover:scale-[1.02] transition transform">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                                <i class="fa fa-money"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-dark">牛碧财神赛道</h3>
+                                <p class="text-gray-500 text-sm">消费王者 · 比金额</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <p class="text-gray-700">活动期间堂食消费金额最高</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <p class="text-gray-700">前5名获得「牛碧财神」称号</p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <p class="text-gray-700">以小程序会员ID消费金额为统计依据</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/10 rounded-xl p-4">
+                            <p class="text-sm text-accent font-medium">
+                                <i class="fa fa-lightbulb-o mr-1"></i>
+                                消费越高排名越靠前，还有额外现金奖励！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 月卡权益 -->
+            <div class="bg-white py-10">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-2xl font-bold text-center mb-8 text-dark">🎫 牛碧Plus月卡权益</h2>
+                    
+                    <div class="max-w-md mx-auto bg-gradient-to-br from-secondary/10 to-primary/10 rounded-2xl p-6 border-2 border-dashed border-primary/30">
+                        <div class="text-center mb-6">
+                            <span class="inline-block bg-secondary text-dark font-bold text-sm px-4 py-1 rounded-full mb-2">
+                                仅需 ¥9.9
+                            </span>
+                            <h3 class="text-xl font-bold">立享100杯雪碧茶资格</h3>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary mr-4 shadow-sm">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">月卡有效期</p>
+                                    <p class="text-sm text-gray-500">开卡后30天内有效</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary mr-4 shadow-sm">
+                                    <i class="fa fa-coffee"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">最多100杯</p>
+                                    <p class="text-sm text-gray-500">活动期间最多可领取100杯雪碧茶</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary mr-4 shadow-sm">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">每日限领4杯</p>
+                                    <p class="text-sm text-gray-500">每人每日最多可领取4杯</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary mr-4 shadow-sm">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">仅限堂食</p>
+                                    <p class="text-sm text-gray-500">到店堂食即可领取</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <button onclick="buyCard()" class="w-full bg-primary text-white font-bold text-lg py-4 rounded-xl hover:bg-primary/90 transition">
+                                立即开通 ¥9.9
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 规则页 -->
+        <div id="rules-page" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <h2 class="text-2xl font-bold mb-6 text-dark">📋 活动规则</h2>
+                
+                <div class="bg-white rounded-2xl p-6 card-shadow mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-primary">牛碧之王赛道评选规则</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-primary rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700">持有9.9元「牛碧Plus月卡」</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-primary rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700">活动期间完成100杯雪碧茶核销</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-primary rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700">以第100杯雪碧茶核销时间为最终排名依据</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-primary rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700">按完成时间由早到晚进行排名，取前3名</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 card-shadow mb-6">
+                    <h3 class="text-xl font-bold mb-4 text-accent">牛碧财神赛道评选规则</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-accent rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700">持有9.9元「牛碧Plus月卡」</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-accent rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700">活动时间：2026年4月1日 - 2026年6月1日</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-accent rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700">活动期间堂食消费金额排名TOP5</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="inline-block w-6 h-6 bg-accent rounded-full text-white text-center text-sm leading-6 mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700">以小程序会员ID堂食消费金额为统计依据</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-6 card-shadow">
+                    <h3 class="text-xl font-bold mb-4 text-dark">活动说明</h3>
+                    <div class="space-y-3 text-gray-700">
+                        <p>• 如同一用户同时满足「牛碧之王」与「牛碧财神」获奖条件，则仅保留「牛碧之王」奖励；「牛碧财神」名额顺延至下一位符合条件的用户。</p>
+                        <p>• 活动数据以许府牛官方后台统计为准。</p>
+                        <p>• 活动最终解释权归许府牛品牌方所有。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 奖励页 -->
+        <div id="rewards-page" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <h2 class="text-2xl font-bold mb-6 text-dark">🏆 奖励一览</h2>
+                
+                <!-- 牛碧之王奖励 -->
+                <div class="bg-white rounded-2xl p-6 card-shadow mb-6 border-l-4 border-primary">
+                    <div class="flex items-center mb-4">
+                        <div class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                            <i class="fa fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-dark">全球牛碧之王奖励</h3>
+                            <p class="text-gray-500 text-sm">共3名 · 速度最快的挑战者</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-cutlery"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">牛碧霸王卡</p>
+                                <p class="text-xs text-gray-500">2026年内可享3次霸王餐权益</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-coffee"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">雪碧茶年卡</p>
+                                <p class="text-xs text-gray-500">2026年内每日免费领取1杯雪碧茶</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-certificate"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">荣誉证书+专属海报</p>
+                                <p class="text-xs text-gray-500">官方平台及门店展示</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-gift"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Family礼盒</p>
+                                <p class="text-xs text-gray-500">价值约700元和牛大礼包</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-ticket"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">雪碧代言人见面会</p>
+                                <p class="text-xs text-gray-500">门票1张</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-primary/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-shopping-bag"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">雪碧官方周边</p>
+                                <p class="text-xs text-gray-500">限量周边大礼包</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 牛碧财神奖励 -->
+                <div class="bg-white rounded-2xl p-6 card-shadow border-l-4 border-accent">
+                    <div class="flex items-center mb-4">
+                        <div class="w-14 h-14 bg-accent rounded-full flex items-center justify-center text-white text-2xl mr-4">
+                            <i class="fa fa-money"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-dark">牛碧财神奖励</h3>
+                            <p class="text-gray-500 text-sm">共5名 · 消费最高的用户</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-rmb"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">现金奖励</p>
+                                <p class="text-xs text-gray-500">1000元现金红包</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-cutlery"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">牛碧霸王卡</p>
+                                <p class="text-xs text-gray-500">2026年内可享3次霸王餐权益</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-coffee"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">雪碧茶年卡</p>
+                                <p class="text-xs text-gray-500">2026年内每日免费领取1杯雪碧茶</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-certificate"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">荣誉证书</p>
+                                <p class="text-xs text-gray-500">官方平台及门店展示</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-gift"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">Family礼盒</p>
+                                <p class="text-xs text-gray-500">价值约700元和牛大礼包</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-accent/5 rounded-xl p-4 flex items-center">
+                            <div class="w-10 h-10 bg-accent rounded-full flex items-center justify-center text-white mr-3 flex-shrink-0">
+                                <i class="fa fa-shopping-bag"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium">雪碧官方周边</p>
+                                <p class="text-xs text-gray-500">限量周边大礼包</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 我的页面 -->
+        <div id="profile-page" class="page hidden">
+            <div class="container mx-auto px-4 py-8">
+                <!-- 用户信息卡 -->
+                <div class="bg-gradient-sprite text-white rounded-2xl p-6 card-shadow mb-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-2xl mr-4">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold">牛碧挑战者</h3>
+                                <p class="text-sm opacity-90">会员ID: NB202600123</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <span class="inline-block bg-secondary/90 text-dark text-xs font-bold px-3 py-1 rounded-full">
+                                已开通月卡
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 进度卡片 -->
+                <div class="bg-white rounded-2xl p-6 card-shadow mb-6">
+                    <h3 class="text-lg font-bold mb-4 text-dark">📊 挑战进度</h3>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">已领取雪碧茶</span>
+                            <span class="font-bold text-primary">28 / 100 杯</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                            <div class="bg-primary h-full rounded-full" style="width: 28%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2">按当前进度，还需18天完成挑战</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-2xl font-bold text-primary">4</p>
+                            <p class="text-xs text-gray-500">今日剩余可领</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-2xl font-bold text-accent">23</p>
+                            <p class="text-xs text-gray-500">当前排名</p>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-2xl font-bold text-secondary">¥1,288</p>
+                            <p class="text-xs text-gray-500">累计消费</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 快捷操作 -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <button onclick="showToast('核销功能开发中')" class="bg-primary text-white rounded-xl p-6 hover:bg-primary/90 transition">
+                        <i class="fa fa-qrcode text-3xl mb-2"></i>
+                        <p class="font-medium">扫码核销</p>
+                    </button>
+                    <button onclick="showToast('附近门店功能开发中')" class="bg-secondary text-dark rounded-xl p-6 hover:bg-secondary/90 transition">
+                        <i class="fa fa-map-marker text-3xl mb-2"></i>
+                        <p class="font-medium">附近门店</p>
+                    </button>
+                </div>
+                
+                <!-- 领取记录 -->
+                <div class="bg-white rounded-2xl p-6 card-shadow">
+                    <h3 class="text-lg font-bold mb-4 text-dark">📝 最近领取记录</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <div>
+                                <p class="font-medium">雪碧茶 x 2</p>
+                                <p class="text-xs text-gray-500">杭州湖滨店 · 堂食</p>
+                            </div>
+                            <span class="text-sm text-gray-500">今天 12:35</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <div>
+                                <p class="font-medium">雪碧茶 x 4</p>
+                                <p class="text-xs text-gray-500">杭州武林店 · 堂食</p>
+                            </div>
+                            <span class="text-sm text-gray-500">昨天 18:20</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-gray-100">
+                            <div>
+                                <p class="font-medium">雪碧茶 x 3</p>
+                                <p class="text-xs text-gray-500">杭州西湖店 · 堂食</p>
+                            </div>
+                            <span class="text-sm text-gray-500">3月11日 19:15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏（移动端） -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 md:hidden z-50">
+        <div class="grid grid-cols-4 h-16">
+            <button onclick="showPage('home')" class="nav-btn flex flex-col items-center justify-center text-primary">
+                <i class="fa fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button onclick="showPage('rules')" class="nav-btn flex flex-col items-center justify-center text-gray-500">
+                <i class="fa fa-list text-xl"></i>
+                <span class="text-xs mt-1">规则</span>
+            </button>
+            <button onclick="showPage('rewards')" class="nav-btn flex flex-col items-center justify-center text-gray-500">
+                <i class="fa fa-trophy text-xl"></i>
+                <span class="text-xs mt-1">奖励</span>
+            </button>
+            <button onclick="showPage('profile')" class="nav-btn flex flex-col items-center justify-center text-gray-500">
+                <i class="fa fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Toast 提示 -->
+    <div id="toast" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black/80 text-white px-6 py-3 rounded-lg z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+        提示消息
+    </div>
+
+    <script>
+        // 页面切换功能
+        function showPage(pageName) {
+            // 隐藏所有页面
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // 显示选中的页面
+            document.getElementById(`${pageName}-page`).classList.remove('hidden');
+            
+            // 更新底部导航栏高亮状态
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-primary');
+                btn.classList.add('text-gray-500');
+            });
+            
+            // 高亮当前导航项（针对底部导航）
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const pageIndex = {
+                'home': 0,
+                'rules': 1,
+                'rewards': 2,
+                'profile': 3
+            };
+            if (navButtons[pageIndex[pageName]]) {
+                navButtons[pageIndex[pageName]].classList.remove('text-gray-500');
+                navButtons[pageIndex[pageName]].classList.add('text-primary');
+            }
+            
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        }
+
+        // 购买月卡功能
+        function buyCard() {
+            showToast('月卡购买功能开发中，敬请期待！');
+        }
+
+        // Toast 提示功能
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2000);
+        }
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 默认显示首页
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
