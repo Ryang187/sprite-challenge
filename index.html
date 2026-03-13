@@ -75,11 +75,14 @@
         <!-- 首页 -->
         <div id="home-page" class="page">
             <!-- 头部Banner -->
-            <div class="relative text-white overflow-hidden">
-                <img src="banner.jpg" alt="活动Banner" class="absolute top-0 left-0 w-full h-full object-cover">
-                <div class="absolute top-0 left-0 w-full h-full bg-black/40"></div>
+            <div class="relative bg-gradient-to-b from-primary to-primary/80 text-white overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                    <div class="absolute w-40 h-40 rounded-full bg-white/30 -top-10 -left-10 animate-float"></div>
+                    <div class="absolute w-60 h-60 rounded-full bg-white/20 top-20 -right-20 animate-float" style="animation-delay: 1s"></div>
+                    <div class="absolute w-32 h-32 rounded-full bg-white/20 bottom-10 left-20 animate-float" style="animation-delay: 2s"></div>
+                </div>
                 
-                <div class="container mx-auto px-4 py-16 relative z-10">
+                <div class="container mx-auto px-4 py-10 relative z-10">
                     <div class="text-center">
                         <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-2 text-shadow">
                             <span class="text-secondary">9块9</span> 挑战100杯
